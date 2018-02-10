@@ -1,5 +1,5 @@
 import pygame
-
+import Square
 
 class Chessboard(pygame.sprite.Sprite):
 
@@ -9,28 +9,37 @@ class Chessboard(pygame.sprite.Sprite):
         self.squareObjs = []
 
     def makeChessboard(self):
-        for x in range(1,9):
-            count = 1
-            # columns
-            for y in range(1, 9):
-                if count%2 == 1:
+        # Make Square Objects
+        # column
+        count = 1
+        for y in range(1,9):
+
+            # row
+            for x in range(1, 9):
+                if count%2 == 0:
                     color = "White"
                 else:
                     color = "Black"
                 square = (x,y,color)
                 self.squares.append(square)
-        for square in self.squares:
-            square = Square.makeSquares
-            self.squareObjs.append(square)
+                count+=1
 
-    def updateChessboard(self, pieces):
+        for square in self.squares:
+            tempSquare = Square(square[0], square[1], [square[2]])
+            self.squareObjs.append(tempSquare)
+
+    def updateChessboard(self, pieces, screen):
         """
-        Calls Make Square and blits everything
+
         :param pieces: List of pieces currently in play
         :return: void
         """
-        # Make Square Objects
-        # rows
+        for square in self.squareObjs:
+
+
+
+
+
 
 
 
