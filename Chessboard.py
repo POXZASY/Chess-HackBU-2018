@@ -8,7 +8,7 @@ class Chessboard(pygame.sprite.Sprite):
         self.squares = []  # list of squares represented as tuples of x,y,color
         self.squareObjs = []  # list of squares represented as objects
         self.all_pieces = {}  # list of all pieces
-
+        self.allpieces = 
     def makeChessboard(self):
         # Make Square Objects
         # column
@@ -29,7 +29,7 @@ class Chessboard(pygame.sprite.Sprite):
             temp_square = Square.Square(square[0], square[1], [square[2]])  # make a square object
             self.squareObjs.append(temp_square)
 
-        
+
 
     def updateChessboard(self, pieces, screen):
         """
