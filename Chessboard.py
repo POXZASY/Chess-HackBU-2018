@@ -1,6 +1,7 @@
 import pygame
 import Square
 
+
 class Chessboard(pygame.sprite.Sprite):
 
     def __init__(self, pieces):
@@ -9,6 +10,7 @@ class Chessboard(pygame.sprite.Sprite):
         self.squareObjs = []  # list of squares represented as objects
         self.all_squares = {}  # list of all pieces
         self.list_of_pieces = []
+        
     def makeChessboard(self):
         # Make Square Objects
         # column
@@ -104,7 +106,8 @@ class Chessboard(pygame.sprite.Sprite):
             columns += 1
         self.all_squares = {i[0]: i[1] for i in templist}
 
-
+    def getCoords(self,pieces):
+        
 
 
 
