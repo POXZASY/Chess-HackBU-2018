@@ -22,6 +22,7 @@ class Knight:
                 else:
                     if 0<j[0]<9 and 0<j[1]< 9:
                         moveList.append(j[0],j[1])
+        return moveList
 
 
     def movePiece(possibleMoves):
