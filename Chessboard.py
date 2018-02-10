@@ -4,9 +4,9 @@ import Square
 class Chessboard(pygame.sprite.Sprite):
 
     def __init__(self, pieces):
-        self.pieces = pieces
-        self.squares = []
-        self.squareObjs = []
+        self.pieces = pieces  # lsit of piece objects
+        self.squares = []  # list of squares represented as tuples of x,y,color
+        self.squareObjs = []  # list of squares represented as objects
 
     def makeChessboard(self):
         # Make Square Objects
@@ -20,13 +20,13 @@ class Chessboard(pygame.sprite.Sprite):
                     color = "White"
                 else:
                     color = "Black"
-                square = (x,y,color)
+                square = (x, y, color)
                 self.squares.append(square)
-                count+=1
+                count += 1
 
         for square in self.squares:
-            tempSquare = Square(square[0], square[1], [square[2]])
-            self.squareObjs.append(tempSquare)
+            temp_square = Square.Square(square[0], square[1], [square[2]])  # make a square object
+            self.squareObjs.append(temp_square)
 
     def updateChessboard(self, pieces, screen):
         """
@@ -35,7 +35,10 @@ class Chessboard(pygame.sprite.Sprite):
         :return: void
         """
         for square in self.squareObjs:
+            screen.blit(square.surface, square.surface.getRect())  # blit squares to screen
 
+        for piece in pieces:
+            screen.blit(piece.surface, piece.getRect())  # blit piece to pieces
 
 
 
