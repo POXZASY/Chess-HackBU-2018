@@ -12,4 +12,6 @@ def convertToNumber(num): #num is a list of two values, x and y
     x, y = pygame.display.get_surface().get_size()
     xunit=x/8
     yunit=y/8
-    realx = num[0]/xunit
+    realx = int((num[0]/xunit)+1)
+    realy = int(((y-num[1])/yunit)+1)
+    return [realx, realy]
