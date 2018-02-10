@@ -11,21 +11,17 @@ class Knight:
         Inputs: allPiece
         Outputs: Array of arrays of possible positions (possibleMoves)
         """
-        postion = (self.x, self.y)
+        position = (self.x, self.y)
         allPiece = "things"
         moveList = []
-        moveList.append([self.x + 2, self.y + 1])
-        moveList.append([self.x - 2, self.y + 1])
-        moveList.append([self.x + 2, self.y - 1])
-        moveList.append([self.x - 2, self.y - 1])
-
-        moveList.append([self.x + 1, self.y + 2])
-        moveList.append([self.x - 1, self.y + 2])
-        moveList.append([self.x + 1, self.y - 2])
-        moveList.append([self.x - 1, self.y - 2])
-        for i in range(len(moveList)):
-            if team is in allPiece[i][3]:
-                del allPiece[i]
+        listofnew = [(self.x+2, self.y+1), (self.x+2, self.y-1),(self.x-2, self.y+1), (self.x-2, self.y-1),(self.x+1, self.y+2), (self.x+1, self.y-2), (self.x-1, self.y+2), (self.x-1, self.y-2)]
+        for j in listofnew:
+            for i in Chessboard.list_of_pieces:
+                if j[0] == i.x and j[1]== i.y and self.team == i.team:
+                    #do nothing
+                else:
+                    if 0<j[0]<9 and 0<j[1]< 9:
+                        moveList.append(j[0],j[1])
 
 
     def movePiece(possibleMoves):
