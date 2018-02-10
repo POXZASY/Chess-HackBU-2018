@@ -13,7 +13,7 @@ class Square(pygame.sprite.Sprite):
             rgb = (255, 255, 255)
         self.surface = pygame.Surface((location.convertToPixel(x), location.convertToPixel(y)))
         self.surface.fill(rgb)
-        
+
     def hasPiece(self, pieces):
         for piece in pieces:
             if piece.x == self.x and piece.y == self.y:
