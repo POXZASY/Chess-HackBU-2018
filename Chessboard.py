@@ -7,8 +7,8 @@ class Chessboard(pygame.sprite.Sprite):
         self.pieces = pieces  # lsit of piece objects
         self.squares = []  # list of squares represented as tuples of x,y,color
         self.squareObjs = []  # list of squares represented as objects
-        self.all_pieces = {}  # list of all pieces
-        self.allpieces = 
+        self.all_squares = {}  # list of all pieces
+        self.list_of_pieces = []
     def makeChessboard(self):
         # Make Square Objects
         # column
@@ -29,7 +29,57 @@ class Chessboard(pygame.sprite.Sprite):
             temp_square = Square.Square(square[0], square[1], [square[2]])  # make a square object
             self.squareObjs.append(temp_square)
 
-
+        r = 1  # row
+        c = 1  # column
+        # WHITE PIECES
+        for i in range(17):
+            team = "WHITE"
+            if c > 8:
+                c = 1
+                r += 1
+            if r == 2:
+                piece = pawn.Pawn(c, r, team)
+                self.list_of_pieces.append(piece)
+                c += 1
+                continue
+            elif c == 1 or c == 8:
+                piece = rook.Rook(c, r, team)
+            elif c == 2 or c == 7:
+                piece = knight.Knight(c, r, team)
+            elif c == 3 or c == 6:
+                piece = bishopBase.Bishop(c, r, team)
+            elif c == 4:
+                piece = queen.Queen(c, r, team)
+            elif c == 5:
+                piece = king.King(c, r, team)
+            self.list_of_pieces.append(piece)
+            c += 1
+            
+        r = 7
+        c = 1
+        # BLACK PIECES
+        for i in range(17):
+            team = "BLACK"
+            if c > 8:
+                c = 1
+                r += 1
+            if r == 7:
+                piece = pawn.Pawn(c, r, team)
+                self.list_of_pieces.append(piece)
+                c += 1
+                continue
+            elif c == 1 or c == 8:
+                piece = rook.Rook(c, r, team)
+            elif c == 2 or c == 7:
+                piece = knight.Knight(c, r, team)
+            elif c == 3 or c == 6:
+                piece = bishopBase.Bishop(c, r, team)
+            elif c == 4:
+                piece = queen.Queen(c, r, team)
+            elif c == 5:
+                piece = king.King(c, r, team)
+            self.list_of_pieces.append(piece)
+            c += 1
 
     def updateChessboard(self, pieces, screen):
         """
@@ -52,7 +102,7 @@ class Chessboard(pygame.sprite.Sprite):
                 rows += 1
             templist += ((columns, rows), square)
             columns += 1
-        self.all_pieces = {i[0]: i[1] for i in templist}
+        self.all_squares = {i[0]: i[1] for i in templist}
 
 
 
