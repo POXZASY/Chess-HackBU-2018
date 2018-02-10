@@ -25,13 +25,14 @@ class Controller:
                 mousecoords=pygame.mouse.get_pos()
                 squarecoords=location.convertToNum(mousecoords)
                 if #identify if you clicked on a piece here
-                    #IDENTIFY WHICH PIECE YOU CLICKED ON HERE
+                    #IDENTIFY WHICH PIECE YOU CLICKED ON HERE = piece
                     pieceselected=True
             if pieceselected==True and pygame.mouse.get_pressed()[0] == True:
                 mousecoords = pygame.mouse.get_pos()
                 squarecoords = location.convertToNum(mousecoords)
                 if #confirm if valid move here
                     make valid move here
+                    capture.capture(piece)
                     if turn == "WHITE":
                         turn == "BLACK"
                     else:
