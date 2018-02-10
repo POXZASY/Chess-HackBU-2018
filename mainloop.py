@@ -1,6 +1,7 @@
 import pygame
 import Chessboard
 
+
 class Controller:
     def __init__(self):
         pygame.init()
