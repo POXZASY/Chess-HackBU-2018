@@ -25,10 +25,10 @@ class Controller:
             if pieceselected == False and pygame.mouse.get_pressed()[0] == True:
                 mousecoords = pygame.mouse.get_pos()
                 squarecoords = location.convertToNum(mousecoords)
-                for coords in Chessboard.
-                if  (squarecoords ==)
-                    # IDENTIFY WHICH PIECE YOU CLICKED ON HERE = piece
-                    pieceselected = True
+                for coords in Chessboard.getPieces(temp_pieces):
+                    if  coords == squarecoords
+                        # IDENTIFY WHICH PIECE YOU CLICKED ON HERE = piece
+                        pieceselected = True
             if pieceselected == True and pygame.mouse.get_pressed()[0] == True:
                 valid_moves = validMoves.checkValid()
                 mousecoords = pygame.mouse.get_pos()
