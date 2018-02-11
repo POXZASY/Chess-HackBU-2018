@@ -1,10 +1,11 @@
 class Pawn:
 
-    def __init__(self,x,y,team,PawnFirstMove):
+    def __init__(self,x,y,team, ID, PawnFirstMove):
         self.x = x
         self.y = y
         self.team = team
         self.PawnFirstMove = 0
+        self.ID = ID
 
     def isFirstMove():
         if PawnFirstMove == 0:

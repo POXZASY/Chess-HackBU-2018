@@ -1,10 +1,11 @@
 class Queen:
 
-    def __init__(self,x,y,team):
+    def __init__(self,x,y,team, ID):
         self.x = x
         self.y = y
         self.team = team
         self.PawnFirstMove = 0
+        self.ID = ID
 
     def validMoves(self,allPiece):
         """

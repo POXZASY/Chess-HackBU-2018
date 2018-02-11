@@ -1,9 +1,10 @@
 class Knight:
 
-    def __init__(self,x,y,team):
+    def __init__(self,x,y,team, ID):
         self.x = x
         self.y = y
         self.team = team
+        self.ID = ID
 
     def validMoves(self,allPiece):
         """

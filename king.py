@@ -1,9 +1,10 @@
 class King:
 
-    def __init__(self,x,y,team,KingFirstMove):
+    def __init__(self,x,y,team, ID ,KingFirstMove):
         self.x = x
         self.y = y
         self.team = team
+        self.ID = ID
 
     def isFirstMove():
         if KingFirstMove == 0:
