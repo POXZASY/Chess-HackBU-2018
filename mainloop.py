@@ -12,8 +12,11 @@ class Controller:
         pygame.init()
         self.width = 800
         self.height = 800
-        self.display = pygame.display.set_mode((self.width, self.height))
-        self.screen = self.display
+        self.screen = pygame.display.set_mode((self.width, self.height))
+        self.background = pygame.Surface(self.screen.get_size())  # will become map SURFACE
+        self.background_rect = self.background.get_rect()
+        background_file = pygame.image.load("assets/chessboard.png")
+        self.screen.blit(background_file, background_file.get_rect())
         self.sprites = pygame.sprite.Group()  # all sprites
         self.allpieces = pygame.sprite.Group()
         self.whitepieces = pygame.sprite.Group()
@@ -23,7 +26,7 @@ class Controller:
 
         chessboard = Chessboard.Chessboard()
         chessboard.makeChessboard()  # makes chessboard
-        chessboard.updateChessboard(chessboard.list_of_pieces, self.screen)
+        chessboard.updateChessboard(chessboard.dict_of_pieces.values(), self.screen)
         temp_pieces = chessboard.list_of_pieces  # for saving state
         pieceselected = False
         turn = "WHITE"
@@ -47,7 +50,7 @@ class Controller:
 
                     # SELECTING PIECE
                     if not pieceselected and pygame.mouse.get_pressed()[0]:  # no piece selected, left click detected
-                        
+
                         mousecoords = pygame.mouse.get_pos()
                         squarecoords = location.convertToNumber(mousecoords)
 
@@ -79,6 +82,7 @@ class Controller:
                                     selected.num_moves += 1
                                     chessboard.dict_of_pieces[selected.ID] = selected
                                     chessboard.list_of_pieces = temp_pieces
+                                    print(turn, " made a move")
 
                 # CHANGE TEAM IF MOVE OCCURRED
                 elif move_happened:
