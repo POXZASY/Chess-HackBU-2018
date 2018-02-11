@@ -9,7 +9,7 @@ def inCheck(turn):
     else:
         return False
 
-def inCheckmate(list_of_pieces):
+def inCheckmate(turn, list_of_pieces):
     for i in list_of_pieces:
         if i.team == turn and i.type == "KING" and threaten.isThreatened(i) == True:
             if i.validMoves==[]: #no squares for king to move to
@@ -44,5 +44,13 @@ def inCheckmate(list_of_pieces):
                             for j in range(1,abs(ydiff)):
                                 yvals=yvals+(i.x-j)
                         for k in range(len(xvals)):
-                            blocksquares=blocksquares+
+                            blocksquares=blocksquares+(xvals[k],yvals[k])
+                        for l in list_of_pieces:
+                            if l.team==turn and l.type != "KING":
+                                for m in blocksquares:
+                                    for n in l.validMoves():
+                                        if m==n: #if a potential block square is a valid move for a friendly piece
+                                            return False
+                    elif threat.type=="ROOK":
+
 
