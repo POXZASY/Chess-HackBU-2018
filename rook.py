@@ -1,3 +1,5 @@
+import pygame
+
 class Rook:
 
     def __init__(self,x,y,team, ID):
@@ -9,7 +11,7 @@ class Rook:
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
-
+        self.num_moves = 0
 
     def validMoves(self,allPiece):
         """

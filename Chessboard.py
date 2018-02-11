@@ -1,3 +1,4 @@
+import pygame
 import Square
 import bishopBase
 import king
@@ -8,12 +9,11 @@ import queen
 import rook
 
 
-class Chessboard():
+class Chessboard:
     def __init__(self):
-        self.pieces = []  # lsit of piece objects
+        self.pieces = []  # list of piece objects
         self.squares = []  # list of squares represented as tuples of x,y,color
         self.squareObjs = []  # list of squares represented as objects
-        self.all_squares = {}  # list of all squares
         self.list_of_pieces = []
         self.dict_of_pieces = {}  # TO REFERENCE PIECES BASED ON  POSITION
 
@@ -40,7 +40,7 @@ class Chessboard():
         r = 1  # row
         c = 1  # column
         number = 1
-        count = str("Piece" + number)
+        count = "Piece" + str(number)
         # WHITE PIECES
         for i in range(17):
             team = "WHITE"
@@ -72,7 +72,7 @@ class Chessboard():
         c = 1
         # BLACK PIECES
         number = 17
-        count = str("Piece" + number)
+        count = "Piece" + str(number)
         for i in range(17):
             team = "BLACK"
             if c > 8:
@@ -82,7 +82,7 @@ class Chessboard():
                 piece = pawn.Pawn(c, r, team, count)
                 self.list_of_pieces.append(piece)
                 self.dict_of_pieces[count] = piece
-                count += 1
+                number += 1
                 c += 1
                 continue
             elif c == 1 or c == 8:
@@ -97,7 +97,7 @@ class Chessboard():
                 piece = king.King(c, r, team, count)
             self.list_of_pieces.append(piece)
             self.dict_of_pieces[count] = piece
-            count += 1
+            number += 1
             c += 1
 
     def updateChessboard(self, pieces, screen):
@@ -108,19 +108,20 @@ class Chessboard():
         """
         for square in self.squareObjs:
             square.update(pieces)
-            screen.blit(square.surface, square.surface.getRect())  # blit squares to screen
+            screen.blit(square.surface, square.surface.get_rect())  # blit squares to screen
 
         for piece in pieces:
-            screen.blit(piece.surface, piece.getRect())  # blit piece to pieces
+            screen.blit(piece.image, piece.image.get_rect())  # blit piece to pieces
 
         rows = 1
         columns = 1
         templist = []
-        for square in self.squareObjs:
-            if columns > 8:
-                columns = 1
-                rows += 1
-            templist += ((columns, rows), square)
-            columns += 1
-        self.all_squares = {i[0]: i[1] for i in templist}
+        # for square in self.squareObjs:
+        #     if columns > 8:
+        #         columns = 1
+        #         rows += 1
+        #     templist += ((columns, rows), square)
+        #     columns += 1
+        # self.all_squares = {(i.x, i.y): i for i in templist}
+
         pygame.display.flip()

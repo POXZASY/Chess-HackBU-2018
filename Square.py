@@ -11,7 +11,7 @@ class Square():
             rgb = (0, 0, 0)
         else:
             rgb = (255, 255, 255)
-        self.surface = pygame.Surface((location.convertToPixel(x), location.convertToPixel(y)))
+        self.surface = pygame.Surface(location.convertToPixel([x, y]))
         self.surface.fill(rgb)
         self.hasPiece = False
     
@@ -21,4 +21,4 @@ class Square():
                 self.hasPiece = True
                 return self.hasPiece
             else: 
-               self.hasPiece = True
+                self.hasPiece = True

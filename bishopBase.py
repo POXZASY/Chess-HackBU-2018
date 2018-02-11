@@ -1,3 +1,6 @@
+import pygame
+
+
 class Bishop:
     def __init__(self, x, y, team, ID):
         self.x = x
@@ -8,7 +11,7 @@ class Bishop:
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
-
+        self.num_moves = 0
     def validMoves(self, allPiece):
         """
         Checks vaild moves for bishop

@@ -1,6 +1,7 @@
 import pygame
 class Pawn:
-    def __init__(self, x, y, team, ID, PawnFirstMove):
+
+    def __init__(self, x, y, team, ID):
         self.x = x
         self.y = y
         self.team = team
@@ -10,14 +11,7 @@ class Pawn:
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
-        self.PawnFirstMove = PawnFirstMove
-
-    def isFirstMove(self):
-        if self.PawnFirstMove:
-            self.PawnFirstMove = False
-            return True
-        else:
-            return False
+        self.num_moves = 0
 
     def validMoves(self, allPiece):  # TODO
         """
@@ -26,7 +20,7 @@ class Pawn:
         Outputs: Array of arrays of possible positions (possibleMoves)
         """
         moveList = [(self.x, self.y + 1)]
-        if self.isFirstMove:
+        if self.num_moves == 0:
             moveList.append((self.x, self.y + 2))
         for piece in allPiece:
             if piece != self:
