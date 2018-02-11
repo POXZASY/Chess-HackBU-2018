@@ -51,6 +51,39 @@ def inCheckmate(turn, list_of_pieces):
                                     for n in l.validMoves():
                                         if m==n: #if a potential block square is a valid move for a friendly piece
                                             return False
-                    elif threat.type=="ROOK":
-
+                                        else:
+                                            return True
+                    elif threat.type=="ROOK" or threat.type=="QUEEN":
+                        xdiff = threat.x - i.x
+                        ydiff = threat.y - i.y
+                        xvals = []
+                        yvals = []
+                        if xdiff > 0:
+                            for j in range(1, xdiff):
+                                xvals = xvals + (i.x + j)
+                        if xdiff < 0:
+                            for j in range(1, abs(xdiff)):
+                                xvals = xvals + (i.x - j)
+                        if xdiff == 0:
+                            for j in range(1, abs(ydiff)):
+                                xvals = xvals + (i.x)
+                        if ydiff > 0:
+                            for j in range(1, ydiff):
+                                yvals = yvals + (i.x + j)
+                        if ydiff < 0:
+                            for j in range(1, abs(ydiff)):
+                                yvals = yvals + (i.x - j)
+                        if ydiff == 0:
+                            for j in range(1, abs(xdiff)):
+                                yvals = yvals + (i.y)
+                        for k in range(len(xvals)):
+                            blocksquares = blocksquares + (xvals[k], yvals[k])
+                        for l in list_of_pieces:
+                            if l.team == turn and l.type != "KING":
+                                for m in blocksquares:
+                                    for n in l.validMoves():
+                                        if m == n:  # if a potential block square is a valid move for a friendly piece
+                                            return False
+                                        else:
+                                            return True
 
