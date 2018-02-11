@@ -6,6 +6,10 @@ class Pawn:
         self.team = team
         self.PawnFirstMove = 0
         self.ID = ID
+        self.imagefile = "assets/"+team+"pawn.png"
+        self.image = pygame.image.load(self.imagefile)
+        self.rect = self.image.get_rect()
+        self.rect.center = self.x, self.y
 
     def isFirstMove():
         if PawnFirstMove == 0:

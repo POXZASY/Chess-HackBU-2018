@@ -5,7 +5,7 @@ import king
 import knight
 import pawn
 import queen
-
+import rook
 
 class Chessboard():
 
@@ -124,8 +124,8 @@ class Chessboard():
             templist += ((columns, rows), square)
             columns += 1
         self.all_squares = {i[0]: i[1] for i in templist}
+        pygame.display.flip()
 
-    def getCoords(self,pieces):
         
         
 

@@ -5,6 +5,11 @@ class Bishop:
         self.y = y
         self.team = team
         self.ID = ID
+        self.imagefile = "assets/"+team+"bishop.png"
+        self.image = pygame.image.load(self.imagefile)
+        self.rect = self.image.get_rect()
+        self.rect.center = self.x, self.y
+
 
     def validMoves(self, allPiece):
         """
