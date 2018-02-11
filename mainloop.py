@@ -3,6 +3,7 @@ import location
 import pygame
 
 class Controller:
+
     def __init__(self):
         pygame.init()
         self.width = 800
@@ -14,33 +15,37 @@ class Controller:
         self.blackpieces = pygame.sprite.Group()
 
     def mainloop(self):
-        Chessboard.makeChessboard()
+        Chessboard.makeChessboard()  # makes chessboard
         temp_pieces = Chessboard.list_of_pieces  # for saving state
-        all_pieces = Chessboard.list_of_pieces
-        pieceselected = False
+        pieceselected = False 
         turn = "WHITE"
         checkmate = False
         selected = null  # selected piece
-        move_happened = False  # for making moves
+        move_happened = False  # for *actually* making moves
+        
         # MAIN LOOP
         while not checkmate:
-            Chessboard.updateChessboard(all_pieces, self.screen)
+            Chessboard.updateChessboard(Chessboard.dict_of_pieces.values(), self.screen)  #blits images
             if pieceselected == false:
-                all_pieces = Chessboard.list_of_pieces  # for saving state
+                Chessboard.list_of_pieces = Chessboard.dict_of_pieces.values
             else:
                 temp_pieces = all_pieces
+                
             if not move_happened:
                 #SELECTING PIECE
                 if pieceselected == False and pygame.mouse.get_pressed()[0] == True:
                     mousecoords = pygame.mouse.get_pos()
                     squarecoords = location.convertToNum(mousecoords)
+                    count = 0
                     for piece in temp_pieces:
+
                         if piece.x == squarecoords[0] and piece.y == squarecoords[1]:  # if the click is ona  piece
-                            selected = piece
+                            selected = piece  # TO REPLACE OF, USE selected.ID
+
                             pieceselected = True
                 #MAKING MOVE
                 if pieceselected == True and pygame.mouse.get_pressed()[0] == True:
-                    valid_moves = validMoves.checkValidity(selected)  # LIST OF VALID MOVES*************
+                    valid_moves = validMoves.checkValidity(selected)  # LIST OF VALID MOVES@TODO
                     mousecoords = pygame.mouse.get_pos()
                     squarecoords = location.convertToNum(mousecoords)
                     if squarecoords in valid_moves:
@@ -49,30 +54,28 @@ class Controller:
                         capture.capture(selected)  # look for capture
                         pieceselected = False
                         selected = null
-                        if they are in check:
-                            checkmate = True
                     else:
                         pieceselected = False
                         selected = null
+                    # LOOKING IF STILL IN CHECK AFTER 'MOVE'
+                    for piece in temp_pieces:
+                        if piece.team == turn and piece.type == "KING":
+                            if Check.lookforCheck(piece):
+                                move_happened = false
+                            else:  #**ACTUALLY MOVES NOW**
+                                move_happened = true
+                                Chessboard.dict_of_pieces[selected.ID] = selected
+                                Chessboard.list_of_pieces = temp_pieces
 
-                for piece in temp_pieces:
-                    if piece.team == turn and piece.type == "KING":
-                        if Check.lookforCheck(piece):
-                            move_happened = false
-                        else:
-                            move_happened = true
             elif move_happened:
                 if turn == "WHITE":
                     turn = "BLACK"
                 else:
                     turn = "WHITE"
 
-
-
-
-
         if checkmate:
-            # display game over stuff here
+            pass
+            # display game over stuff here @TODO
 
 
 def main():

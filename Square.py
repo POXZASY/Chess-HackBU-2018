@@ -2,7 +2,7 @@ import pygame
 import location
 
 
-class Square(pygame.sprite.Sprite):
+class Square():
     def __init__(self, x, y, color):
         self.x = x
         self.y = y
@@ -13,12 +13,12 @@ class Square(pygame.sprite.Sprite):
             rgb = (255, 255, 255)
         self.surface = pygame.Surface((location.convertToPixel(x), location.convertToPixel(y)))
         self.surface.fill(rgb)
-        self.currentpiece = null
+        self.hasPiece = False
     
     def update(self, pieces):
         for piece in pieces:
             if piece.x == self.x and piece.y == self.y:
-                self.currentpiece = piece
-                return True
+                self.hasPiece = True
+                return self.hasPiece
             else: 
-                currentPiece = null
+               self.hasPiece = True
