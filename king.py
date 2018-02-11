@@ -1,9 +1,16 @@
 class King:
 
-    def __init__(self,x,y,team):
+    def __init__(self,x,y,team,KingFirstMove):
         self.x = x
         self.y = y
         self.team = team
+
+    def isFirstMove():
+        if KingFirstMove == 0:
+            KingFirstMove = 1 + KingFirstMove
+            return True
+        else:
+            return False
 
     def validMoves(self,allPiece):
         """
@@ -26,9 +33,19 @@ class King:
         if self.x + 1 > 8 or self.y + 1 > 8 or self.x - 1 < 0 or self.y - 1 > 8:
             del moveList[i]
 
+        if self.KingFirstMove:
+            if [0,6] and [0,7] not in allPiece
+                moveList.append([7, 0])
+            if [0,2] and [0,3] and [0,4] not in allPiece
+                moveList.append([3, 0])
+
+
     def movePiece(possibleMoves):
         """
         MovesPiece to vaid space
         Inputs: possibleMoves
         Outputs: New pawn position
         """
+        if move [7,0]:
+            #castleRIght
+        if move [3,0]
