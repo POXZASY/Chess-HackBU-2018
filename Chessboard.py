@@ -1,14 +1,14 @@
-import pygame
 import Square
 import bishopBase
 import king
 import knight
 import pawn
+import pygame
 import queen
 import rook
 
-class Chessboard():
 
+class Chessboard():
     def __init__(self, pieces):
         self.pieces = pieces  # lsit of piece objects
         self.squares = []  # list of squares represented as tuples of x,y,color
@@ -16,16 +16,16 @@ class Chessboard():
         self.all_squares = {}  # list of all squares
         self.list_of_pieces = []
         self.dict_of_pieces = {}  # TO REFERENCE PIECES BASED ON  POSITION
-        
+
     def makeChessboard(self):
         # Make Square Objects
         # column
         count = 1
-        for y in range(1,9):
+        for y in range(1, 9):
 
             # row
             for x in range(1, 9):
-                if count%2 == 0:
+                if count % 2 == 0:
                     color = "White"
                 else:
                     color = "Black"
@@ -36,12 +36,11 @@ class Chessboard():
         for square in self.squares:
             temp_square = Square.Square(square[0], square[1], [square[2]])  # make a square object
             self.squareObjs.append(temp_square)
-            
 
         r = 1  # row
         c = 1  # column
         number = 1
-        count = str(Piece+number)
+        count = str(Piece + number)
         # WHITE PIECES
         for i in range(17):
             team = "WHITE"
@@ -73,7 +72,7 @@ class Chessboard():
         c = 1
         # BLACK PIECES
         number = 17
-        count = str(Piece+number)
+        count = str(Piece + number)
         for i in range(17):
             team = "BLACK"
             if c > 8:
@@ -107,6 +106,7 @@ class Chessboard():
         :param pieces: List of pieces currently in play
         :return: void
         """
+        self.list_of_pieces = pieces
         for square in self.squareObjs:
             square.update(pieces)
             screen.blit(square.surface, square.surface.getRect())  # blit squares to screen
@@ -125,9 +125,3 @@ class Chessboard():
             columns += 1
         self.all_squares = {i[0]: i[1] for i in templist}
         pygame.display.flip()
-
-        
-        
-
-
-
