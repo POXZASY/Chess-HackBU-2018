@@ -8,7 +8,7 @@ class Chessboard(pygame.sprite.Sprite):
         self.pieces = pieces  # lsit of piece objects
         self.squares = []  # list of squares represented as tuples of x,y,color
         self.squareObjs = []  # list of squares represented as objects
-        self.all_squares = {}  # list of all pieces
+        self.all_squares = {}  # list of all squares
         self.list_of_pieces = []
         
     def makeChessboard(self):
@@ -107,6 +107,7 @@ class Chessboard(pygame.sprite.Sprite):
         self.all_squares = {i[0]: i[1] for i in templist}
 
     def getCoords(self,pieces):
+        
         
 
 
