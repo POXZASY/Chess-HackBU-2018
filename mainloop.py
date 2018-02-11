@@ -5,7 +5,7 @@ import Check
 import capture
 import threaten
 import validMoves
-
+import sys
 
 
 class Controller:
@@ -27,12 +27,14 @@ class Controller:
         checkmate = False
         selected = []  # selected piece
         move_happened = False  # for *actually* making moves
-
+        checkmate = False
         # MAIN LOOP
         while not checkmate:
+            checkmate = Check.inCheckmate
             chessboard.updateChessboard(chessboard.dict_of_pieces.values(), self.screen)  # blits images
+
             if pieceselected == False:
-                chessboard.list_of_pieces = Chessboard.dict_of_pieces.values
+                chessboard.list_of_pieces = chessboard.dict_of_pieces.values
             else:
                 temp_pieces = Chessboard.list_of_pieces
 
@@ -51,18 +53,14 @@ class Controller:
 
                 # MAKING MOVE
                 if pieceselected == True and pygame.mouse.get_pressed()[0] == True:
-                    valid_moves = validMoves.checkValidity(selected)  # LIST OF VALID MOVES#TODO
+                    valid_moves = selected.validMoves(temp_pieces)  # LIST OF VALID MOVES#TODO
                     mousecoords = pygame.mouse.get_pos()
                     squarecoords = location.convertToNum(mousecoords)
                     if squarecoords in valid_moves:
                         selected.x = squarecoords[0]
                         selected.y = squarecoords[1]
                         capture.capture(selected)  # look for capture
-                        pieceselected = False
-                        selected = []
-                    else:
-                        pieceselected = False
-                        selected = []
+
                     # LOOKING IF STILL IN CHECK AFTER 'MOVE'
                     for piece in temp_pieces:
                         if piece.team == turn and piece.type == "KING":
@@ -70,19 +68,22 @@ class Controller:
                                 move_happened = False
                             else:  # **ACTUALLY MOVES NOW**
                                 move_happened = True
-                                Chessboard.dict_of_pieces[selected.ID] = selected
-                                Chessboard.list_of_pieces = temp_pieces
+                                chessboard.dict_of_pieces[selected.ID] = selected
+                                chessboard.list_of_pieces = temp_pieces
 
             elif move_happened:
                 if turn == "WHITE":
                     turn = "BLACK"
                 else:
                     turn = "WHITE"
-
-        if checkmate:
-            pass
-            # display game over stuff here #TODO 
-
+                move_happened = False
+            pieceselected = False
+            selected = []
+        while True:
+            if checkmate:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        sys.exit()
 
 def main():
     play = Controller()
