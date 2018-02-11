@@ -50,13 +50,13 @@ class Queen:
             if allPiece[i]["STRING OF CORDINATES"] is in moveList:
                 del moveList[(i + 1):]
         for i in range(8):
-            if self.x + i > 8:
+            if self.x + i > 8
                 del moveList[i]
-            if self.x - i < 0:
+            if self.x - i < 0
                 del moveList[i]
-            if self.y + i > 8:
+            if self.y + i > 8
                 del moveList[i]
-            if self.y - i < 0:
+            if self.y - i < 0
                 del moveList[i]
         for i in range(8):
             if self.x + i > 8 or self.y + i > 8:
