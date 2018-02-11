@@ -73,7 +73,7 @@ class Chessboard:
         # BLACK PIECES
         number = 17
         count = "Piece" + str(number)
-        for i in range(17):
+        for i in range(33):
             team = "BLACK"
             if c > 8:
                 c = 1

@@ -26,16 +26,16 @@ class Controller:
         temp_pieces = chessboard.list_of_pieces  # for saving state
         pieceselected = False
         turn = "WHITE"
-        checkmate = False
         selected = []  # selected piece
         move_happened = False  # for *actually* making moves
         checkmate = False
         # MAIN LOOP
         while not checkmate:
+            chessboard.updateChessboard(chessboard.dict_of_pieces.values(), self.screen)  # blits images
             for event in pygame.event.get():
 
                 checkmate = Check.inCheckmate(turn, chessboard.list_of_pieces)
-                chessboard.updateChessboard(chessboard.dict_of_pieces.values(), self.screen)  # blits images
+
 
                 if not pieceselected:
                     chessboard.list_of_pieces = chessboard.dict_of_pieces.values()

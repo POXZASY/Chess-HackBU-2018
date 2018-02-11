@@ -12,6 +12,7 @@ class Pawn:
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
         self.num_moves = 0
+        self.type = type
 
     def validMoves(self, allPiece):  # TODO
         """

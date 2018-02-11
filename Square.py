@@ -7,7 +7,7 @@ class Square:
         self.x = x
         self.y = y
         self.color = color
-        if color == "BLACK":
+        if self.color == "BLACK":
             rgb = (0, 0, 0)
         else:
             rgb = (255, 255, 255)
