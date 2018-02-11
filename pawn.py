@@ -10,7 +10,7 @@ class Pawn:
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
 
-    def isFirstMove():
+    def isFirstMove(self):
         if PawnFirstMove == 0:
             PawnFirstMove = 1 + PawnFirstMove
             return True
@@ -33,7 +33,7 @@ class Pawn:
             moveList.append([self.x - 1, self.y + 1])
         for i in range(len(moveList)):
             # checks if piece color is same as possible move place (CAN'T MOVE BLACK ON BLACK) gets rid of same color squares
-            if team is in allPiece[i]["BLACK OR WHITE"]:
+            if team in allPiece[i]["BLACK OR WHITE"]:
                 del moveList[i]
         for i in range(len(moveList)):
             if [self.x, self.y + 1] in allPiece:

@@ -15,8 +15,6 @@ class Bishop:
         Inputs: allPiece
         Outputs: Array of arrays of possible positions (possibleMoves)
         """
-        postion = (self.x, self.y)
-        allPiece = things
         moveList = []
         for i in range(8):
             moveList.append([self.x + i, self.y + i])
