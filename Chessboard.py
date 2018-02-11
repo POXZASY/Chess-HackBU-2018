@@ -9,8 +9,8 @@ import rook
 
 
 class Chessboard():
-    def __init__(self, pieces):
-        self.pieces = pieces  # lsit of piece objects
+    def __init__(self):
+        self.pieces = []  # lsit of piece objects
         self.squares = []  # list of squares represented as tuples of x,y,color
         self.squareObjs = []  # list of squares represented as objects
         self.all_squares = {}  # list of all squares
@@ -94,7 +94,7 @@ class Chessboard():
             elif c == 4:
                 piece = queen.Queen(c, r, team, count)
             elif c == 5:
-                piece = king.King(c, r, team, count7w)
+                piece = king.King(c, r, team, count)
             self.list_of_pieces.append(piece)
             self.dict_of_pieces[count] = piece
             count += 1

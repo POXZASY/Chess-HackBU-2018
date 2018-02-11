@@ -20,7 +20,7 @@ class Controller:
         self.blackpieces = pygame.sprite.Group()
 
     def mainloop(self):
-        Chessboard.makeChessboard()  # makes chessboard
+        chessboard = Chessboard.makeChessboard()  # makes chessboard
         temp_pieces = Chessboard.list_of_pieces  # for saving state
         pieceselected = False
         turn = "WHITE"
@@ -30,9 +30,9 @@ class Controller:
 
         # MAIN LOOP
         while not checkmate:
-            Chessboard.updateChessboard(Chessboard.dict_of_pieces.values(), self.screen)  # blits images
+            chessboard.updateChessboard(chessboard.dict_of_pieces.values(), self.screen)  # blits images
             if pieceselected == False:
-                Chessboard.list_of_pieces = Chessboard.dict_of_pieces.values
+                chessboard.list_of_pieces = Chessboard.dict_of_pieces.values
             else:
                 temp_pieces = Chessboard.list_of_pieces
 
@@ -48,7 +48,7 @@ class Controller:
                         if piece.x == squarecoords[0] and piece.y == squarecoords[1]:  # if the click is on a  piece
                             selected = piece  # TO REPLACE OF, USE selected.ID
                             pieceselected = True
-                            
+
                 # MAKING MOVE
                 if pieceselected == True and pygame.mouse.get_pressed()[0] == True:
                     valid_moves = validMoves.checkValidity(selected)  # LIST OF VALID MOVES#TODO
