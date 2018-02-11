@@ -1,3 +1,6 @@
+import pygame
+
+
 class Knight:
     def __init__(self, x, y, team, ID):
         self.x = x
@@ -8,6 +11,7 @@ class Knight:
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
+        self.type = type
 
     def validMoves(self, list_of_pieces):
         """
@@ -22,8 +26,8 @@ class Knight:
         for j in listofnew:
             for i in list_of_pieces:
                 if j[0] == i.x and j[1] == i.y and self.team == i.team:
-                # do nothing
+                    continue
                 else:
                     if 0 < j[0] < 9 and 0 < j[1] < 9:
-                        movelist.append(j[0], j[1])
+                        movelist.append([j[0], j[1]])
         return movelist
