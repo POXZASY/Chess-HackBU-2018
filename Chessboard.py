@@ -22,20 +22,20 @@ class Chessboard:
         # column
         count = 1
         for y in range(1, 9):
-
             # row
             for x in range(1, 9):
                 if count % 2 == 0:
                     color = "WHITE"
                 else:
                     color = "BLACK"
-                square = (x, y, color)
-                self.squares += square
+                SSquare = [x, y, color]
+                self.squares.append(SSquare)
                 count += 1
                 
-        for square in self.squares:
-            temp_square = Square.Square(square[0], square[1], [square[2]])  # make a square object
-            self.squareObjs.append(temp_square)
+        for i in range(len(self.squares)):
+            print(type(self.squares[i]))
+            temp_square = Square.Square(self.squares[i][0], self.squares[i][1], self.squares[i][2])  # make a square object
+            self.squareObjs +=temp_square
 
         r = 1  # row
         c = 1  # column
