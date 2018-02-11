@@ -1,6 +1,4 @@
 import pygame
-
-
 class Pawn:
 
     def __init__(self, x, y, team, ID):
@@ -9,7 +7,6 @@ class Pawn:
         self.team = team
         self.PawnFirstMove = 0
         self.ID = ID
-        self.type = "PAWN"
         self.imagefile = "assets/" + team + "pawn.png"
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
@@ -31,12 +28,17 @@ class Pawn:
                     moveList.append([self.x + 1, self.y + 1])
                 if [piece.x, piece.y] == [self.x - 1, self.y + 1] and piece.team != self.team:
                     moveList.append([self.x - 1, self.y + 1])
-                if piece.team == self.team:
-                    if [piece.x, piece.y] in moveList:
-                        moveList.remove([piece.x, piece.y])
                 for i in range(len(moveList)):
-                    if [self.x, self.y + 1] == [piece.x, piece.y]:
-                        moveList.remove([self.x, self.y + 1])
+                    # checks if piece color is same as possible move place (CAN'T MOVE BLACK ON BLACK) gets rid of same color squares
+                    if self.team == piece.team:
+                        del moveList[i]
+            if [self.x, self.y + 1] == [piece.x, piece.y]:
+                moveList.remove([self.x, self.y + 1])
+            if self.y==piece.y and abs(self.x-piece.x)==1 and piece.type=="PAWN" and piece.hasmoved==False:
+                if piece.team == "WHITE":
+                    moveList.append((piece.x, piece.y-1))
+                else:
+                    moveList.append((piece.x, piece.y+1))
         return moveList
 
     def movePiece(self, move):
