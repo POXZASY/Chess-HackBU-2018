@@ -22,45 +22,106 @@ class Queen(pygame.sprite.Sprite):
         Inputs: allPiece
         Outputs: Array of arrays of possible positions (possibleMoves)
         """
-        moveList = []
+        movelist = []
         # Rook Movement
-        for i in range(8):
-            moveList.append([self.x + i, self.y])
-        for i in range(8):
-            moveList.append([self.x - i, self.y])
-        for i in range(8):
-            moveList.append([self.x, self.y + i])
-        for i in range(8):
-            moveList.append([self.x, self.y - i])
-        # Bishop Movement
-        for i in range(8):
-            moveList.append([self.x + i, self.y + i])
-        for i in range(8):
-            moveList.append([self.x + i, self.y - i])
-        for i in range(8):
-            moveList.append([self.x - i, self.y + i])
-        for i in range(8):
-            moveList.append([self.x - i, self.y - i])
-        for piece in allPiece:
-            for i in range(len(moveList)):
-                # checks if piece color is same as possible move place (CAN'T MOVE BLACK ON BLACK) gets rid of same color squares
-                if self.team == piece.team:
-                    if [piece.x, piece.y] in moveList:
-                        del moveList[i]
-            for i in range(len(moveList)):
-                # checks if taken coordinate is in the move list then deletes everything after
-                if [piece.x, piece.y]:
-                    moveList.remove([i + 1])
-            for i in range(8):
-                if self.x + i > 8:
-                    del moveList[i]
-                if self.x - i < 0:
-                    del moveList[i]
-                if self.y + i > 8:
-                    del moveList[i]
-                if self.y - i < 0:
-                    del moveList[i]
-        return moveList
+        xval = self.x - 1  # horizontal
+        while xval != 0:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == self.y:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, self.y))
+                        break
+            movelist.append((xval, self.y))
+            xval = xval - 1
+        xval = self.x + 1
+        while xval != 9:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == self.y:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, self.y))
+                        break
+            movelist.append((xval, self.y))
+            xval = xval + 1
+        yval = self.y - 1  # vertical
+        while yval != 0:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == self.x and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((self.x, yval))
+                        break
+            movelist.append((self.x, yval))
+            yval = yval - 1
+        yval = self.y + 1
+        while yval != 9:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == self.x and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((self.x, yval))
+                        break
+            movelist.append((self.x, yval))
+            yval = yval + 1
+        #Bishop Movement
+        xval = self.x - 1
+        yval = self.y - 1
+        while xval != 0 and yval != 0:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, yval))
+                        break
+            movelist.append((xval, yval))
+            xval = xval - 1
+            yval = yval - 1
+        xval = self.x + 1
+        yval = self.y + 1
+        while xval != 9 and yval != 9:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, yval))
+                        break
+            movelist.append((xval, yval))
+            xval = xval + 1
+            yval = yval + 1
+        xval = self.x - 1
+        yval = self.y + 1
+        while xval != 0 and yval != 9:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, yval))
+                        break
+            movelist.append((xval, yval))
+            xval = xval - 1
+            yval = yval + 1
+        xval = self.x + 1
+        yval = self.y - 1
+        while xval != 0 and yval != 0:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, yval))
+                        break
+            movelist.append((xval, yval))
+            xval = xval + 1
+            yval = yval - 1
+        return movelist
 
     def movePiece(self, move):
         """

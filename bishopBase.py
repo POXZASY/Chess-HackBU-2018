@@ -23,33 +23,60 @@ class Bishop(pygame.sprite.Sprite):
         Outputs: Array of arrays of possible positions (possibleMoves)
         """
 
-        moveList = []
-        for i in range(8):
-            moveList.append([self.x + i, self.y + i])
-        for i in range(8):
-            moveList.append([self.x + i, self.y - i])
-        for i in range(8):
-            moveList.append([self.x - i, self.y + i])
-        for i in range(8):
-            moveList.append([self.x - i, self.y - i])
-
-        for piece in allPiece:
-            if piece.team == self.team:
-                moveList.remove([piece.x, piece.y])
-            for i in range(len(moveList)):
-                # checks if taken coordinate is in the move list then deletes everything after
-                if [piece.x, piece.y]:
-                    moveList.remove([i + 1])
-            for i in range(8):
-                if self.x + i > 8:
-                    del moveList[i]
-                if self.x - i < 0:
-                    del moveList[i]
-                if self.y + i > 8:
-                    del moveList[i]
-                if self.y - i < 0:
-                    del moveList[i]
-            return moveList
+        movelist = []
+        xval = self.x - 1
+        yval = self.y - 1
+        while xval != 0 and yval!=0:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, yval))
+                        break
+            movelist.append((xval, yval))
+            xval = xval - 1
+            yval = yval - 1
+        xval = self.x + 1
+        yval = self.y + 1
+        while xval != 9 and yval != 9:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, yval))
+                        break
+            movelist.append((xval, yval))
+            xval = xval + 1
+            yval = yval + 1
+        xval = self.x - 1
+        yval = self.y + 1
+        while xval != 0 and yval != 9:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, yval))
+                        break
+            movelist.append((xval, yval))
+            xval = xval - 1
+            yval = yval + 1
+        xval = self.x + 1
+        yval = self.y - 1
+        while xval != 0 and yval != 0:
+            for i in list_of_pieces:  # check if there's a piece there
+                if i.x == xval and i.y == yval:
+                    if i.team == self.team:
+                        break
+                    else:
+                        movelist.append((xval, yval))
+                        break
+            movelist.append((xval, yval))
+            xval = xval + 1
+            yval = yval - 1
+        return movelist
 
     def movePiece(self, move):
         """

@@ -18,32 +18,52 @@ class Pawn(pygame.sprite.Sprite):
         self.num_moves = 0
         self.type = type
 
-    def validMoves(self, allPiece):  # TODO
+    def validMoves(self, list_of_pieces):  # TODO
         """
         Checks vaild moves for pawn
         Inputs: allPiece
         Outputs: Array of arrays of possible positions (possibleMoves)
         """
-        moveList = [(self.x, self.y + 1)]
-        if self.num_moves == 0:
-            moveList.append((self.x, self.y + 2))
-        for piece in allPiece:
-            if piece != self:
-                if [piece.x, piece.y] == [self.x + 1, self.y + 1] and piece.team != self.team:
-                    moveList.append([self.x + 1, self.y + 1])
-                if [piece.x, piece.y] == [self.x - 1, self.y + 1] and piece.team != self.team:
-                    moveList.append([self.x - 1, self.y + 1])
-                for i in range(len(moveList)):
-                    # checks if piece color is same as possible move place (CAN'T MOVE BLACK ON BLACK) gets rid of same color squares
-                    if self.team == piece.team:
-                        del moveList[i]
-            if [self.x, self.y + 1] == [piece.x, piece.y]:
-                moveList.remove([self.x, self.y + 1])
-            if self.y==piece.y and abs(self.x-piece.x)==1 and piece.type=="PAWN" and piece.hasmoved==False:
-                if piece.team == "WHITE":
-                    moveList.append((piece.x, piece.y-1))
+        movelist = []
+        for i in list_of_pieces: #move one up
+            if self.team == "WHITE":
+                if i.x==self.x and i.y==self.y+1:
+                    break
+                movelist.append((self.x, self.y + 1))
+            else:
+                if i.x==self.x and i.y==self.y-1:
+                    break
+                movelist.append((self.x, self.y - 1))
+        if self.num_moves == 0: #move two up
+            for i in list_of_pieces:
+                if self.team == "WHITE":
+                    if i.x == self.x and i.y == self.y + 2:
+                        break
+                    elif i.x == self.x and i.y == self.y + 1:
+                        break
+                    movelist.append((self.x, self.y + 2))
                 else:
-                    moveList.append((piece.x, piece.y+1))
+                    if i.x == self.x and i.y == self.y - 2:
+                        break
+                    elif i.x == self.x and i.y == self.y - 1:
+                        break
+                    movelist.append((self.x, self.y - 2))
+        for i in list_of_pieces: #capture
+            if self.team == "WHITE":
+                if i.x==self.x+1 and abs(self.y-i.y)==1 and i.team=="BLACK":
+                    movelist.append((i.x, i.y))
+            else:
+                if i.x==self.x-1 and abs(self.y-i.y)==1 and i.team=="WHITE":
+                    movelist.append((i.x, i.y))
+
+
+
+        #en passant
+        if self.y==piece.y and abs(self.x-piece.x)==1 and piece.type=="PAWN" and piece.num_moves==0:
+            if piece.team == "WHITE":
+                moveList.append((piece.x, piece.y-1))
+            else:
+                moveList.append((piece.x, piece.y+1))
         return moveList
 
     def movePiece(self, move):
