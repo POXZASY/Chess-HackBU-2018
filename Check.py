@@ -9,3 +9,40 @@ def inCheck(turn):
     else:
         return False
 
+def inCheckmate(list_of_pieces):
+    for i in list_of_pieces:
+        if i.team == turn and i.type == "KING" and threaten.isThreatened(i) == True:
+            if i.validMoves==[]: #no squares for king to move to
+                #get the piece(s) attacking and find if it/they is/are threatened
+                threatlist=threaten.threats(i)
+                if len(threatlist)>1: #double check(mate)
+                    return True
+                elif len(threaten.threats(threatlist[0]))>0: #there is at least one way to capture the attacker
+                    return False
+                else: #king can't move, one attacker, no way to capture (i.e. must block)
+                    threat=threatlist[0]
+                    blocksquares=[]
+                    if threat.type=="KNIGHT":
+                        return True
+                    elif threat.type=="PAWN":
+                        return True
+                    elif threat.type=="BISHOP":
+                        xdiff=threat.x-i.x
+                        ydiff=threat.y-i.y
+                        xvals=[]
+                        yvals=[]
+                        if xdiff>0:
+                            for j in range(1,xdiff):
+                                xvals=xvals+(i.x+j)
+                        if xdiff<0:
+                            for j in range(1,abs(xdiff)):
+                                xvals=xvals+(i.x-j)
+                        if ydiff>0:
+                            for j in range(1,ydiff):
+                                yvals=yvals+(i.x+j)
+                        if ydiff<0:
+                            for j in range(1,abs(ydiff)):
+                                yvals=yvals+(i.x-j)
+                        for k in range(len(xvals)):
+                            blocksquares=blocksquares+
+
