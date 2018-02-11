@@ -1,15 +1,16 @@
 import pygame
 import Chessboard
 
-def isThreatened(piece, list_of_pieces):
-    for i in list_of_pieces:
-        if (piece.x, piece.y) in i.validMoves():
+def isThreatened(cPiece, list_of_pieces):
+    for piece in list_of_pieces:
+        if [piece.x, piece.y] in cPiece.validMoves(list_of_pieces):
             return True
     else:
         return False
-def threats(piece, list_of_pieces): #returns threats to the piece
+
+def threats(cPiece,list_of_pieces): #returns threats to the piece
     threats=[]
-    for i in list_of_pieces:
-        if (piece.x, piece.y) in i.validMoves():
-            threats=threats+i
+    for piece in list_of_pieces:
+        if (piece.x, piece.y) in cPiece.validMoves(list_of_pieces):
+            threats.append(piece)
     return threats

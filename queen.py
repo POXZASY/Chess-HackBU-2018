@@ -8,6 +8,7 @@ class Queen:
         self.team = team
         self.PawnFirstMove = 0
         self.ID = ID
+        self.type = "QUEEN"
         self.imagefile = "assets/" + team + "queen.png"
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
@@ -42,7 +43,8 @@ class Queen:
             for i in range(len(moveList)):
                 # checks if piece color is same as possible move place (CAN'T MOVE BLACK ON BLACK) gets rid of same color squares
                 if self.team == piece.team:
-                    del moveList[i]
+                    if [piece.x, piece.y] in moveList:
+                        del moveList[i]
             for i in range(len(moveList)):
                 # checks if taken coordinate is in the move list then deletes everything after
                 if [piece.x, piece.y]:
@@ -56,6 +58,7 @@ class Queen:
                     del moveList[i]
                 if self.y - i < 0:
                     del moveList[i]
+        return moveList
 
     def movePiece(self, move):
         """

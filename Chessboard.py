@@ -33,7 +33,7 @@ class Chessboard:
                 count += 1
                 
         for i in range(len(self.squares)):
-            print(type(self.squares[i]))
+
             temp_square = Square.Square(self.squares[i][0], self.squares[i][1], self.squares[i][2])  # make a square object
             self.squareObjs.append(temp_square)
 

@@ -7,11 +7,13 @@ class Bishop:
         self.y = y
         self.team = team
         self.ID = ID
+        self.type = "BISHOP"
         self.imagefile = "assets/" + team + "bishop.png"
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
         self.num_moves = 0
+
     def validMoves(self, allPiece):
         """
         Checks vaild moves for bishop
@@ -30,10 +32,8 @@ class Bishop:
             moveList.append([self.x - i, self.y - i])
 
         for piece in allPiece:
-            for i in range(len(moveList)):
-                # checks if piece color is same as possible move place (CAN'T MOVE BLACK ON BLACK) gets rid of same color squares
-                if self.team == piece.team:
-                    del moveList[i]
+            if piece.team == self.team:
+                moveList.remove([piece.x, piece.y])
             for i in range(len(moveList)):
                 # checks if taken coordinate is in the move list then deletes everything after
                 if [piece.x, piece.y]:
@@ -47,6 +47,7 @@ class Bishop:
                     del moveList[i]
                 if self.y - i < 0:
                     del moveList[i]
+            return moveList
 
     def movePiece(self, move):
         """

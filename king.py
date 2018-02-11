@@ -7,6 +7,7 @@ class King:
         self.y = y
         self.team = team
         self.ID = ID
+        self.type = "KING"
         self.imagefile = "assets/" + team + "king.png"
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
@@ -36,7 +37,9 @@ class King:
         team_coords = []
         for piece in allPiece:
             if piece.team == self.team:
-                team_coords += [piece.x, piece.y]
+                if [piece.x, piece.y] in moveList:
+                    moveList.remove([piece.x, piece.y])
+                team_coords += [piece.x, piece.y]  # for castling
 
         if self.num_moves == 0:
             if self.team == "WHITE":
@@ -49,6 +52,7 @@ class King:
                     moveList.append([3, 8])
                 if [6, 8] and [7, 8] not in team_coords:
                     moveList.append([3, 8])
+        return moveList
 
     def didCastle(self):
         """
