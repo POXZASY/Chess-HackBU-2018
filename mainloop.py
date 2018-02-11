@@ -47,7 +47,7 @@ class Controller:
 
                     # SELECTING PIECE
                     if not pieceselected and pygame.mouse.get_pressed()[0]:  # no piece selected, left click detected
-                        print("Got here")
+                        
                         mousecoords = pygame.mouse.get_pos()
                         squarecoords = location.convertToNumber(mousecoords)
 

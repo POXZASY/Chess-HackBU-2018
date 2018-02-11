@@ -16,7 +16,7 @@ class Queen(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
 
-    def validMoves(self, allPiece):
+    def validMoves(self, list_of_pieces):
         """
         Checks vaild moves for pawn
         Inputs: allPiece

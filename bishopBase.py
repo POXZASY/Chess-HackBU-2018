@@ -16,7 +16,7 @@ class Bishop(pygame.sprite.Sprite):
         self.rect.center = self.x, self.y
         self.num_moves = 0
 
-    def validMoves(self, allPiece):
+    def validMoves(self, list_of_pieces):
         """
         Checks vaild moves for bishop
         Inputs: allPiece

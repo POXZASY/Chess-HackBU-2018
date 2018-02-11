@@ -59,12 +59,13 @@ class Pawn(pygame.sprite.Sprite):
 
 
         #en passant
-        if self.y==piece.y and abs(self.x-piece.x)==1 and piece.type=="PAWN" and piece.num_moves==0:
-            if piece.team == "WHITE":
-                moveList.append((piece.x, piece.y-1))
-            else:
-                moveList.append((piece.x, piece.y+1))
-        return moveList
+        for piece in list_of_pieces:
+            if self.y==piece.y and abs(self.x-piece.x)==1 and piece.type=="PAWN" and piece.num_moves==0:
+                if piece.team == "WHITE":
+                    movelist.append((piece.x, piece.y-1))
+                else:
+                    movelist.append((piece.x, piece.y+1))
+        return movelist
 
     def movePiece(self, move):
         """
