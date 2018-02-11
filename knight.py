@@ -11,7 +11,7 @@ class Knight:
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
-        self.type = type
+        self.type = "KNIGHT"
 
     def validMoves(self, list_of_pieces):
         """
