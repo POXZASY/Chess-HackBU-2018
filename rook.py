@@ -11,7 +11,7 @@ class Rook:
         self.rect.center = self.x, self.y
 
 
-    def validMoves(self,allPiece):
+    def validMoves(self,list_of_pieces):
         """
         Checks vaild moves for rook
         Inputs: allPiece
