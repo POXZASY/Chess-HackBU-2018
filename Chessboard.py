@@ -26,9 +26,9 @@ class Chessboard():
             # row
             for x in range(1, 9):
                 if count % 2 == 0:
-                    color = "White"
+                    color = "WHITE"
                 else:
-                    color = "Black"
+                    color = "BLACK"
                 square = (x, y, color)
                 self.squares.append(square)
                 count += 1
@@ -40,7 +40,7 @@ class Chessboard():
         r = 1  # row
         c = 1  # column
         number = 1
-        count = str(Piece + number)
+        count = str("Piece" + number)
         # WHITE PIECES
         for i in range(17):
             team = "WHITE"
@@ -72,7 +72,7 @@ class Chessboard():
         c = 1
         # BLACK PIECES
         number = 17
-        count = str(Piece + number)
+        count = str("Piece" + number)
         for i in range(17):
             team = "BLACK"
             if c > 8:
@@ -106,7 +106,6 @@ class Chessboard():
         :param pieces: List of pieces currently in play
         :return: void
         """
-        self.list_of_pieces = pieces
         for square in self.squareObjs:
             square.update(pieces)
             screen.blit(square.surface, square.surface.getRect())  # blit squares to screen

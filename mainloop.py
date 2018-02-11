@@ -1,6 +1,11 @@
 import Chessboard
 import location
 import pygame
+import Check
+import capture
+import threaten
+import validMoves
+
 
 
 class Controller:
@@ -20,29 +25,30 @@ class Controller:
         pieceselected = False
         turn = "WHITE"
         checkmate = False
-        selected = null  # selected piece
+        selected = []  # selected piece
         move_happened = False  # for *actually* making moves
 
         # MAIN LOOP
         while not checkmate:
             Chessboard.updateChessboard(Chessboard.dict_of_pieces.values(), self.screen)  # blits images
-            if pieceselected == false:
+            if pieceselected == False:
                 Chessboard.list_of_pieces = Chessboard.dict_of_pieces.values
             else:
-                temp_pieces = all_pieces
+                temp_pieces = Chessboard.list_of_pieces
 
             if not move_happened:
+
                 # SELECTING PIECE
                 if pieceselected == False and pygame.mouse.get_pressed()[0] == True:
                     mousecoords = pygame.mouse.get_pos()
                     squarecoords = location.convertToNum(mousecoords)
-                    count = 0
+
                     for piece in temp_pieces:
 
                         if piece.x == squarecoords[0] and piece.y == squarecoords[1]:  # if the click is on a  piece
                             selected = piece  # TO REPLACE OF, USE selected.ID
-
                             pieceselected = True
+                            
                 # MAKING MOVE
                 if pieceselected == True and pygame.mouse.get_pressed()[0] == True:
                     valid_moves = validMoves.checkValidity(selected)  # LIST OF VALID MOVES#TODO
@@ -53,17 +59,17 @@ class Controller:
                         selected.y = squarecoords[1]
                         capture.capture(selected)  # look for capture
                         pieceselected = False
-                        selected = null
+                        selected = []
                     else:
                         pieceselected = False
-                        selected = null
+                        selected = []
                     # LOOKING IF STILL IN CHECK AFTER 'MOVE'
                     for piece in temp_pieces:
                         if piece.team == turn and piece.type == "KING":
                             if Check.lookforCheck(piece):
-                                move_happened = false
+                                move_happened = False
                             else:  # **ACTUALLY MOVES NOW**
-                                move_happened = true
+                                move_happened = True
                                 Chessboard.dict_of_pieces[selected.ID] = selected
                                 Chessboard.list_of_pieces = temp_pieces
 
