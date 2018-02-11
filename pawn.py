@@ -1,3 +1,4 @@
+import pygame
 class Pawn:
     def __init__(self, x, y, team, ID, PawnFirstMove):
         self.x = x
@@ -9,10 +10,11 @@ class Pawn:
         self.image = pygame.image.load(self.imagefile)
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
+        self.PawnFirstMove = PawnFirstMove
 
-    def isFirstMove():
-        if PawnFirstMove == 0:
-            PawnFirstMove = 1 + PawnFirstMove
+    def isFirstMove(self):
+        if self.PawnFirstMove:
+            self.PawnFirstMove = False
             return True
         else:
             return False
@@ -23,23 +25,25 @@ class Pawn:
         Inputs: allPiece
         Outputs: Array of arrays of possible positions (possibleMoves)
         """
-        allPiece = "things"
-        moveList = [[self.x, self.y + 1]]
-        if self.PawnFirstMove:
-            moveList.append([self.x, self.y + 2])
-        if allPiece[Corrodinates and color] == [self.x + 1, self.y + 1]:
-            moveList.append([self.x + 1, self.y + 1])
-        if allPiece[Corrodinates and color] == [self.x - 1, self.y + 1]:
-            moveList.append([self.x - 1, self.y + 1])
-        for i in range(len(moveList)):
-            # checks if piece color is same as possible move place (CAN'T MOVE BLACK ON BLACK) gets rid of same color squares
-            if team is in allPiece[i]["BLACK OR WHITE"]:
-                del moveList[i]
-        for i in range(len(moveList)):
-            if [self.x, self.y + 1] in allPiece:
-                del [self.x, self.y + 1] in moveList
+        moveList = [(self.x, self.y + 1)]
+        if self.isFirstMove:
+            moveList.append((self.x, self.y + 2))
+        for piece in allPiece:
+            if piece != self:
+                if [piece.x, piece.y] == [self.x + 1, self.y + 1] and piece.team != self.team:
+                    moveList.append([self.x + 1, self.y + 1])
+                if [piece.x, piece.y] == [self.x - 1, self.y + 1] and piece.team != self.team:
+                    moveList.append([self.x - 1, self.y + 1])
+                for i in range(len(moveList)):
+                    # checks if piece color is same as possible move place (CAN'T MOVE BLACK ON BLACK) gets rid of same color squares
+                    if self.team == piece.team:
+                        del moveList[i]
+            for i in range(len(moveList)):
+                if [self.x, self.y + 1] == [piece.x, piece.y]:
+                    moveList.remove([self.x, self.y + 1])
+        return moveList
 
-    def movePiece(possibleMoves):
+    def movePiece(self, move):
         """
         MovesPiece to vaid space
         Inputs: possibleMoves
@@ -47,9 +51,5 @@ class Pawn:
         """
         """MOVE PIECE"""
         # After moved
-        if self.y == 8:
-            pass  # TODO
-            # replace Pawn(wait for key press)
-        if SQUARE SELECTED:
-            allPiece[coordinates] = [new x, new y]
-            return allPiece
+        self.x = move[0]
+        self.y = move[1]

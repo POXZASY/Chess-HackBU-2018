@@ -27,3 +27,12 @@ class Knight:
                     if 0 < j[0] < 9 and 0 < j[1] < 9:
                         movelist.append(j[0], j[1])
         return movelist
+
+    def movePiece(self, move):
+        """
+        MovesPiece to vaid space
+        Inputs: possibleMoves
+        Outputs: New pawn position
+        """
+        self.x = move[0]
+        self.y = move[1]
