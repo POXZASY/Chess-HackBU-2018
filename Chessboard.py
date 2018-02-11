@@ -20,20 +20,19 @@ class Chessboard:
     def makeChessboard(self):
         # Make Square Objects
         # column
-        count = 1
+        current_num = 1
         for y in range(1, 9):
             # row
             for x in range(1, 9):
-                if count % 2 == 0:
+                if current_num % 2 == 0:
                     color = "WHITE"
                 else:
                     color = "BLACK"
                 SSquare = [x, y, color]
                 self.squares.append(SSquare)
-                count += 1
-                
+                current_num += 1
+        print(current_num)
         for i in range(len(self.squares)):
-
             temp_square = Square.Square(self.squares[i][0], self.squares[i][1], self.squares[i][2])  # make a square object
             self.squareObjs.append(temp_square)
 
@@ -108,7 +107,7 @@ class Chessboard:
         """
         for square in self.squareObjs:
             square.update(pieces)
-            screen.blit(square.surface, square.surface.get_rect())  # blit squares to screen
+            screen.blit(square.surface, square.rect)  # blit squares to screen
 
         for piece in pieces:
             screen.blit(piece.image, piece.image.get_rect())  # blit piece to pieces

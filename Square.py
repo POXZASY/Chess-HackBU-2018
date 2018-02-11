@@ -8,11 +8,13 @@ class Square:
         self.y = y
         self.color = color
         if self.color == "BLACK":
-            rgb = (0, 0, 0)
+            self.image = "assets/blackbox.png"
         else:
-            rgb = (255, 255, 255)
-        self.surface = pygame.Surface(location.convertToPixel([x, y]))
-        self.surface.fill(rgb)
+            self.image = "assets/whitebox.png"
+        self.surface = pygame.image.load(self.image)
+        #self.surface = pygame.Surface(location.convertToPixel([100, 100]))
+        self.rect = self.surface.get_rect()
+        self.rect.center = (x,y)
         self.hasPiece = False
     
     def update(self, pieces):

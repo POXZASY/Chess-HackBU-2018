@@ -12,7 +12,8 @@ class Controller:
         pygame.init()
         self.width = 800
         self.height = 800
-        self.screen = pygame.display.set_mode((self.width, self.height))
+        self.display = pygame.display.set_mode((self.width, self.height))
+        self.screen = pygame.display.get_surface()
         self.sprites = pygame.sprite.Group()  # all sprites
         self.allpieces = pygame.sprite.Group()
         self.whitepieces = pygame.sprite.Group()
@@ -53,8 +54,10 @@ class Controller:
                         for piece in temp_pieces:
 
                             if piece.x == squarecoords[0] and piece.y == squarecoords[1]:  # if the click is on a  piece
-                                selected = piece  # TO REPLACE OF, USE selected.ID
-                                pieceselected = True
+                                if turn == piece.team:
+                                    selected = piece  # TO REPLACE OF, USE selected.ID
+                                    print(selected)
+                                    pieceselected = True
 
                     # MAKING MOVE
                     if pieceselected and pygame.mouse.get_pressed()[0]:  # piece seleceted, left click detected
