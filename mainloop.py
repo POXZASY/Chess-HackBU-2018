@@ -13,7 +13,7 @@ class Controller:
         self.width = 800
         self.height = 800
         self.display = pygame.display.set_mode((self.width, self.height))
-        self.screen = pygame.display.get_surface()
+        self.screen = self.display
         self.sprites = pygame.sprite.Group()  # all sprites
         self.allpieces = pygame.sprite.Group()
         self.whitepieces = pygame.sprite.Group()

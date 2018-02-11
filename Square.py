@@ -7,8 +7,8 @@ class Square(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.x = x
         self.y = y
-        self.color = color
-        if self.color == "BLACK":
+        self.colorsq = color
+        if self.colorsq == "BLACK":
             self.imagefile = "assets/blackbox.png"
         else:
             self.imagefile = "assets/whitebox.png"

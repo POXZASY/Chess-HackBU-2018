@@ -32,7 +32,6 @@ class Chessboard:
                 SSquare = [x, y, color]
                 self.squares.append(SSquare)
                 current_num += 1
-        print(current_num)
         for i in range(len(self.squares)):
             temp_square = Square.Square(self.squares[i][0], self.squares[i][1], self.squares[i][2])  # make a square object
             self.squareObjs.append(temp_square)
@@ -109,10 +108,10 @@ class Chessboard:
         for square in self.squareObjs:
             square.update(pieces)
             self.sprites.add(square)
-            screen.blit(square.image, square.rect)  # blit squares to screen
+            screen.blit(square.image, square.image.get_rect())  # blit squares to screen
 
         for piece in pieces:
-            self.sprites.add(square)
+            self.sprites.add(piece)
             screen.blit(piece.surface, piece.image.get_rect())  # blit piece to pieces
 
         rows = 1
@@ -127,5 +126,4 @@ class Chessboard:
         # self.all_squares = {(i.x, i.y): i for i in templist}
 
         pygame.display.flip()
-        print(type(screen))
         self.sprites.draw(screen)
