@@ -1,8 +1,9 @@
 import pygame
 
 
-class King:
+class King(pygame.sprite.Sprite):
     def __init__(self, x, y, team, ID):
+        pygame.sprite.Sprite.__init__(self)
         self.x = x
         self.y = y
         self.team = team
@@ -10,6 +11,7 @@ class King:
         self.type = "KING"
         self.imagefile = "assets/" + team + "king.png"
         self.image = pygame.image.load(self.imagefile)
+        self.surface = self.image
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
         self.num_moves = 0

@@ -1,8 +1,9 @@
 import pygame
 
 
-class Queen:
+class Queen(pygame.sprite.Sprite):
     def __init__(self, x, y, team, ID):
+        pygame.sprite.Sprite.__init__(self)
         self.x = x
         self.y = y
         self.team = team
@@ -11,6 +12,7 @@ class Queen:
         self.type = "QUEEN"
         self.imagefile = "assets/" + team + "queen.png"
         self.image = pygame.image.load(self.imagefile)
+        self.surface = self.image
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
 

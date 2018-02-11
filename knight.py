@@ -1,14 +1,16 @@
 import pygame
 
 
-class Knight:
+class Knight(pygame.sprite.Sprite):
     def __init__(self, x, y, team, ID):
+        pygame.sprite.Sprite.__init__(self)
         self.x = x
         self.y = y
         self.team = team
         self.ID = ID
         self.imagefile = "assets/" + team + "knight.png"
         self.image = pygame.image.load(self.imagefile)
+        self.surface = self.image
         self.rect = self.image.get_rect()
         self.rect.center = self.x, self.y
         self.type = "KNIGHT"

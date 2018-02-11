@@ -16,6 +16,7 @@ class Chessboard:
         self.squareObjs = []  # list of squares represented as objects
         self.list_of_pieces = []
         self.dict_of_pieces = {}  # TO REFERENCE PIECES BASED ON  POSITION
+        self.sprites = pygame.sprite.Group()
 
     def makeChessboard(self):
         # Make Square Objects
@@ -107,10 +108,12 @@ class Chessboard:
         """
         for square in self.squareObjs:
             square.update(pieces)
-            screen.blit(square.surface, square.rect)  # blit squares to screen
+            self.sprites.add(square)
+            screen.blit(square.image, square.rect)  # blit squares to screen
 
         for piece in pieces:
-            screen.blit(piece.image, piece.image.get_rect())  # blit piece to pieces
+            self.sprites.add(square)
+            screen.blit(piece.surface, piece.image.get_rect())  # blit piece to pieces
 
         rows = 1
         columns = 1
@@ -124,3 +127,5 @@ class Chessboard:
         # self.all_squares = {(i.x, i.y): i for i in templist}
 
         pygame.display.flip()
+        print(type(screen))
+        self.sprites.draw(screen)

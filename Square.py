@@ -2,18 +2,19 @@ import pygame
 import location
 
 
-class Square:
+class Square(pygame.sprite.Sprite):
     def __init__(self, x, y, color):
+        pygame.sprite.Sprite.__init__(self)
         self.x = x
         self.y = y
         self.color = color
         if self.color == "BLACK":
-            self.image = "assets/blackbox.png"
+            self.imagefile = "assets/blackbox.png"
         else:
-            self.image = "assets/whitebox.png"
-        self.surface = pygame.image.load(self.image)
+            self.imagefile = "assets/whitebox.png"
+        self.image = pygame.image.load(self.imagefile)
         #self.surface = pygame.Surface(location.convertToPixel([100, 100]))
-        self.rect = self.surface.get_rect()
+        self.rect = self.image.get_rect()
         self.rect.center = (x,y)
         self.hasPiece = False
     
