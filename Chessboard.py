@@ -30,9 +30,9 @@ class Chessboard:
                 else:
                     color = "BLACK"
                 square = (x, y, color)
-                self.squares.append(square)
+                self.squares += square
                 count += 1
-
+                
         for square in self.squares:
             temp_square = Square.Square(square[0], square[1], [square[2]])  # make a square object
             self.squareObjs.append(temp_square)

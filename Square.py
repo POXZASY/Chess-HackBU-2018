@@ -2,12 +2,12 @@ import pygame
 import location
 
 
-class Square():
+class Square:
     def __init__(self, x, y, color):
         self.x = x
         self.y = y
         self.color = color
-        if color == "Black":
+        if color == "BLACK":
             rgb = (0, 0, 0)
         else:
             rgb = (255, 255, 255)
