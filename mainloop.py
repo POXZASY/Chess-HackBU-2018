@@ -2,6 +2,7 @@ import Chessboard
 import location
 import pygame
 
+
 class Controller:
 
     def __init__(self):
@@ -45,7 +46,7 @@ class Controller:
                             pieceselected = True
                 #MAKING MOVE
                 if pieceselected == True and pygame.mouse.get_pressed()[0] == True:
-                    valid_moves = validMoves.checkValidity(selected)  # LIST OF VALID MOVES@TODO
+                    valid_moves = validMoves.checkValidity(selected)  # LIST OF VALID MOVES#TODO
                     mousecoords = pygame.mouse.get_pos()
                     squarecoords = location.convertToNum(mousecoords)
                     if squarecoords in valid_moves:
@@ -75,7 +76,7 @@ class Controller:
 
         if checkmate:
             pass
-            # display game over stuff here @TODO
+            # display game over stuff here #TODO
 
 
 def main():

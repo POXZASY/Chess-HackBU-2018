@@ -6,7 +6,7 @@ class Bishop:
         self.team = team
         self.ID = ID
 
-    def validMoves(self,allPiece):
+    def validMoves(self, allPiece):
         """
         Checks vaild moves for bishop
         Inputs: allPiece

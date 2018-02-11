@@ -1,5 +1,10 @@
 import pygame
 import Square
+import bishopBase
+import king
+import knight
+import pawn
+import queen
 
 
 class Chessboard():
