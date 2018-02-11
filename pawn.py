@@ -49,3 +49,6 @@ class Pawn:
         #After moved
         if self.y = 8:
             #replace Pawn(wait for key press)
+        if SQUARE SELECTED:
+            allPiece[coordinates] = [new x, new y]
+            return allPiece
