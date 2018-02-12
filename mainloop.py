@@ -35,7 +35,7 @@ class Controller:
         checkmate = False
         # MAIN LOOP
         while not checkmate:
-            chessboard.updateChessboard(chessboard.dict_of_pieces.values(), self.screen)  # blits images
+            chessboard.updateChessboard(temp_pieces, self.screen)  # blits images
             for event in pygame.event.get():
 
                 checkmate = Check.inCheckmate(turn, chessboard.list_of_pieces)
@@ -73,9 +73,10 @@ class Controller:
                             capture.capture(selected)  # look for capture
 
                         # LOOKING IF STILL IN CHECK AFTER 'MOVE'
-                        for piece in temp_pieces:
+                        tempTemp = temp_pieces
+                        for piece in tempTemp:
                             if piece.team == turn and piece.type == "KING":
-                                if Check.inCheck(piece, temp_pieces):
+                                if Check.inCheck(piece, tempTemp):
                                     move_happened = False
                                 else:  # **ACTUALLY MOVES NOW**
                                     move_happened = True

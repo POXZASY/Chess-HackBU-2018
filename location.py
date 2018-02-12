@@ -2,7 +2,7 @@ import pygame
 
 
 def convertToPixel(num): #num is a list of two values, x and y
-    # x, y = 800, 800
+    x, y = 800, 800
     xunit=100
     yunit=100
     realx = (num[0] - 1) * xunit + (xunit / 2)  # x pixels
@@ -11,7 +11,7 @@ def convertToPixel(num): #num is a list of two values, x and y
 
 
 def convertToNumber(num): #num is a list of two values, x and y
-    # x, y = 800, 800
+    x, y = 800, 800
     xunit=100
     yunit=100
     realx = int((num[0]/xunit)+1)
